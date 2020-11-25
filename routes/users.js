@@ -17,7 +17,7 @@ router.post(
     check("email", "Please enter a valid email").isEmail(),
     check(
       "password",
-      "Please enter a password with a minimum of 6 characters"
+      "Please enter a password with 6 or more characters"
     ).isLength({ min: 6 }),
   ],
   async (req, res) => {
@@ -28,7 +28,8 @@ router.post(
     const { name, email, password } = req.body;
 
     try {
-      let user = await User.fineOne({ email });
+      let user = await User.findOne({ email });
+
       if (user) {
         return res.status(400).json({ msg: "User already exists" });
       }
@@ -53,7 +54,9 @@ router.post(
       jwt.sign(
         payload,
         config.get("jwtSecret"),
-        { expiresIn: 3600 },
+        {
+          expiresIn: 360000,
+        },
         (err, token) => {
           if (err) throw err;
           res.json({ token });
@@ -61,7 +64,7 @@ router.post(
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).json({ msg: "Server Error" });
+      res.status(500).send("Server error");
     }
   }
 );
