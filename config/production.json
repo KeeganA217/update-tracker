@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://keegan217:keegan217@update-tracker.4bqif.mongodb.net/updatetracker?retryWrites=true&w=majority",
+  "jwtSecret": "secret"
+}
