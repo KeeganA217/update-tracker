@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "materialize-css/dist/css/materialize.min.css";
+import M from "materialize-css/dist/js/materialize.min.js";
+import "./App.css";
+import { Switch, Route } from "react-router-dom";
+
+import Navbar from "./layout/Navbar";
+import Register from "./forms/Register";
+import Login from "./forms/Login";
+import Home from "./layout/Home";
+import AuthState from "./context/auth/AuthState";
 
 function App() {
+  useEffect(() => {
+    M.AutoInit();
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthState>
+      <div>
+        <Navbar />
+        <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </div>
+    </AuthState>
   );
 }
 
