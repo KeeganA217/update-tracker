@@ -2,6 +2,10 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: url(./images/background.png);
+  background-position: center;
+  background-size: auto;
+  background-repeat: no-repeat;
 }
 
 main {
@@ -18,4 +22,8 @@ button {
 
 nav {
   margin-bottom: 20px;
+}
+
+.exit {
+  margin-right: 10px;
 }

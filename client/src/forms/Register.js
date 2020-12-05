@@ -25,8 +25,10 @@ const Register = (props) => {
       email === "" ||
       password === ""
     ) {
+      console.log("please enter all fields");
       //setAlert("Please enter all fields", "danger");
     } else if (password !== password2) {
+      console.log("passwords must match");
       //setAlert("Passwords do not match", "danger");
     } else {
       register({
@@ -40,7 +42,7 @@ const Register = (props) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      props.history.push("/");
+      props.history.push("/logs");
     }
 
     if (error === "User already exists") {
@@ -57,54 +59,68 @@ const Register = (props) => {
       <div className="row">
         <div className="col s12">
           <div className="input-field col s12 l6 offset-l3 offset-r3">
+            <i className="material-icons prefix">person</i>
             <input
-              id="first_name"
+              id="icon-prefix"
               type="text"
-              className="validate"
-              onChange={onChange}
+              name="firstName"
               value={firstName}
+              onChange={onChange}
+              required
+              className="validate"
             />
-            <label for="first_name">First Name</label>
+            <label htmlFor="firstName">First Name</label>
           </div>
           <div className="input-field col s12 l6 offset-l3 offset-r3">
+            <i className="material-icons prefix">person_outline</i>
             <input
-              id="last_name"
+              id="icon-prefix"
               type="text"
-              className="validate"
-              onChange={onChange}
+              name="lastName"
               value={lastName}
+              onChange={onChange}
+              required
+              className="validate"
             />
-            <label for="last_name">Last Name</label>
+            <label htmlFor="lastName">Last Name</label>
           </div>
           <div className="input-field col s12 l6 offset-l3 offset-r3">
+            <i className="material-icons prefix">email</i>
             <input
-              id="email"
+              id="icon-prefix"
               type="email"
-              className="validate"
+              name="email"
               onChange={onChange}
-              value={email}
+              required
+              className="validate"
             />
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
           </div>
           <div className="input-field col s12 l6 offset-l3 offset-r3">
+            <i className="material-icons prefix">lock_outline</i>
             <input
-              id="password"
+              id="icon-prefix"
               type="password"
-              className="validate"
-              onChange={onChange}
+              name="password"
               value={password}
+              onChange={onChange}
+              required
+              minLength="6"
             />
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
           </div>
           <div className="input-field col s12 l6 offset-l3 offset-r3">
+            <i className="material-icons prefix">lock_open</i>
             <input
-              id="password_2"
+              id="icon-prefix"
               type="password"
-              className="validate"
-              onChange={onChange}
+              name="password2"
               value={password2}
+              onChange={onChange}
+              required
+              className="validate"
             />
-            <label for="password_2">Confirm Password</label>
+            <label htmlFor="password_2">Confirm Password</label>
           </div>
           <div className="col s12 center-align">
             <button
@@ -116,11 +132,11 @@ const Register = (props) => {
               <i className="material-icons right">send</i>
             </button>
           </div>
-          <div className="col s12 l5 offset-l4 offset-r3">
+          <div className="col s12 center-align">
             <p className="flow-text">
               Already registered?{" "}
               <a
-                href="/login"
+                href="/"
                 className="waves-effect waves-light btn btn-small teal lighten-1"
               >
                 <i className="material-icons right">subdirectory_arrow_right</i>

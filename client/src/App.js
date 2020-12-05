@@ -9,6 +9,7 @@ import Register from "./forms/Register";
 import Login from "./forms/Login";
 import Home from "./layout/Home";
 import AuthState from "./context/auth/AuthState";
+import PrivateRoute from "../src/context/routing/PrivateRoute";
 
 function App() {
   useEffect(() => {
@@ -20,9 +21,9 @@ function App() {
       <div>
         <Navbar />
         <Switch>
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/logs" component={Home} />
         </Switch>
       </div>
     </AuthState>
