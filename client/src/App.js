@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "materialize-css/dist/css/materialize.min.css";
-import M from "materialize-css/dist/js/materialize.min.js";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
@@ -9,24 +8,25 @@ import Register from "./forms/Register";
 import Login from "./forms/Login";
 import Home from "./layout/Home";
 import AuthState from "./context/auth/AuthState";
+import LogState from "./context/logs/LogState";
 import PrivateRoute from "../src/context/routing/PrivateRoute";
+import AddLogModal from "./logs/AddLogModal";
 
 function App() {
-  useEffect(() => {
-    M.AutoInit();
-  });
-
   return (
-    <AuthState>
-      <div>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <PrivateRoute exact path="/logs" component={Home} />
-        </Switch>
-      </div>
-    </AuthState>
+    <LogState>
+      <AuthState>
+        <div>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <PrivateRoute exact path="/logs" component={Home} />
+          </Switch>
+          <AddLogModal />
+        </div>
+      </AuthState>
+    </LogState>
   );
 }
 

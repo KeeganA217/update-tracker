@@ -1,8 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/auth/authContext";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 const Register = (props) => {
   const authContext = useContext(AuthContext);
+
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
   const [user, setUser] = useState({
@@ -25,11 +27,9 @@ const Register = (props) => {
       email === "" ||
       password === ""
     ) {
-      console.log("please enter all fields");
-      //setAlert("Please enter all fields", "danger");
+      M.toast({ html: "Please fill in all fields.." });
     } else if (password !== password2) {
-      console.log("passwords must match");
-      //setAlert("Passwords do not match", "danger");
+      M.toast({ html: "Passwords do not match.." });
     } else {
       register({
         firstName,
@@ -46,7 +46,7 @@ const Register = (props) => {
     }
 
     if (error === "User already exists") {
-      //setAlert(error, "danger");
+      M.toast({ html: "User already exists.." });
       clearErrors();
     }
 
@@ -66,7 +66,6 @@ const Register = (props) => {
               name="firstName"
               value={firstName}
               onChange={onChange}
-              required
               className="validate"
             />
             <label htmlFor="firstName">First Name</label>
@@ -79,7 +78,6 @@ const Register = (props) => {
               name="lastName"
               value={lastName}
               onChange={onChange}
-              required
               className="validate"
             />
             <label htmlFor="lastName">Last Name</label>
@@ -91,7 +89,6 @@ const Register = (props) => {
               type="email"
               name="email"
               onChange={onChange}
-              required
               className="validate"
             />
             <label htmlFor="email">Email</label>
@@ -104,8 +101,6 @@ const Register = (props) => {
               name="password"
               value={password}
               onChange={onChange}
-              required
-              minLength="6"
             />
             <label htmlFor="password">Password</label>
           </div>
@@ -117,7 +112,6 @@ const Register = (props) => {
               name="password2"
               value={password2}
               onChange={onChange}
-              required
               className="validate"
             />
             <label htmlFor="password_2">Confirm Password</label>

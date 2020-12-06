@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "../context/auth/authContext";
+import M from "materialize-css/dist/js/materialize.min.js";
 
 const Login = (props) => {
   const authContext = useContext(AuthContext);
@@ -12,7 +13,8 @@ const Login = (props) => {
     }
 
     if (error === "Invalid Credentials") {
-      //setAlert(error, "danger");
+      M.toast({ html: "Incorrect Email or Password.." });
+
       clearErrors();
     }
 
@@ -31,7 +33,7 @@ const Login = (props) => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
-      //setAlert("Please fill in all fields", "danger");
+      M.toast({ html: "Please fill in all fields.." });
     } else {
       login({
         email,
@@ -52,7 +54,6 @@ const Login = (props) => {
               name="email"
               value={email}
               onChange={onChange}
-              required
               className="validate"
             />
             <label htmlFor="email">Email</label>
@@ -65,7 +66,7 @@ const Login = (props) => {
               name="password"
               value={password}
               onChange={onChange}
-              requiredclassName="validate"
+              className="validate"
             />
             <label htmlFor="password">Password</label>
           </div>

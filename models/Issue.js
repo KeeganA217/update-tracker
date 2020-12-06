@@ -11,7 +11,7 @@ const IssueSchema = mongoose.Schema({
   },
   action: {
     type: String,
-    default: "Action Needed",
+    default: "Needs Attention",
   },
   date: {
     type: Date,

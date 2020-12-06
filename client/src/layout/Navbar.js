@@ -41,7 +41,7 @@ const Navbar = () => {
           <a className="brand-logo">
             <i className=" nav-icon material-icons">error_outline</i>Logo
           </a>
-          <ul class="right valign-wrapper">
+          <ul className="right valign-wrapper">
             {isAuthenticated ? authLinks : null}
           </ul>
         </div>

@@ -1,18 +1,37 @@
-import React from "react";
+import React, { useRef, useContext } from "react";
+import LogContext from "../context/logs/logContext";
 
 const Search = () => {
+  const logContext = useContext(LogContext);
+
+  const { filterLogs } = logContext;
+
+  const text = useRef("");
+
+  const onChange = (e) => {
+    filterLogs(text.current.value);
+  };
+
   return (
-    <div className="container">
-      <div className="row">
-        <div className="col s12">
-          <div className="input-field l8 center-align">
-            <input id="search" type="search" className="validate" />
-            <label htmlFor="search">Search Logs...</label>
+    <nav style={{ marginBottom: "30px" }} className="blue">
+      <div className="nav-wrapper">
+        <form>
+          <div className="input-field">
+            <input
+              id="search"
+              type="search"
+              placeholder="Search Logs.."
+              ref={text}
+              onChange={onChange}
+            />
+            <label className="label-icon" htmlFor="search">
+              <i className="material-icons">search</i>
+            </label>
             <i className="material-icons">close</i>
           </div>
-        </div>
+        </form>
       </div>
-    </div>
+    </nav>
   );
 };
 
