@@ -1,15 +1,11 @@
 import React, { useEffect, useContext } from "react";
 import LogItem from "./LogItem";
 import M from "materialize-css/dist/js/materialize.min.js";
-import AuthContext from "../context/auth/authContext";
 import LogContext from "../context/logs/logContext";
-import { GET_LOGS } from "../context/Types";
 
 const Logs = () => {
   const logContext = useContext(LogContext);
-  const authContext = useContext(AuthContext);
 
-  const { loading } = authContext;
   const { logs, getLogs } = logContext;
 
   useEffect(() => {

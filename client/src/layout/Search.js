@@ -13,7 +13,7 @@ const Search = () => {
   };
 
   return (
-    <nav style={{ marginBottom: "30px" }} className="blue">
+    <nav style={{ marginBottom: "20px" }} className="blue container">
       <div className="nav-wrapper">
         <form>
           <div className="input-field">

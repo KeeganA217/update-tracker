@@ -1,11 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
+import AuthContext from "../context/auth/authContext";
 
-const AddLogModal = () => {
+const EditLogModal = () => {
   const logContext = useContext(LogContext);
+  const authContext = useContext(AuthContext);
 
-  const { addLog } = logContext;
+  const { user } = authContext;
+
+  const { updateLog, current } = logContext;
 
   const [log, setLog] = useState({
     title: "",
@@ -16,6 +20,16 @@ const AddLogModal = () => {
 
   const { title, description, attention } = log;
 
+  useEffect(() => {
+    if (current) {
+      setLog({
+        title: current.title,
+        description: current.description,
+        attention: current.attention,
+      });
+    }
+  }, [current]);
+
   const onChange = (e) => setLog({ ...log, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
@@ -23,11 +37,18 @@ const AddLogModal = () => {
     if (title === "" || description === "" || attention === "") {
       M.toast({ html: "Please enter a title and description.." });
     } else {
-      setLog({ ...log, [e.target.name]: e.target.value });
-    }
+      const updLog = {
+        id: current._id,
+        title,
+        description,
+        attention,
+        date: new Date(),
+      };
 
-    addLog(log);
-    console.log(attention);
+      updateLog(updLog);
+
+      M.toast({ html: `Log updated by ${user.firstName}` });
+    }
 
     setLog({
       title: "",
@@ -37,13 +58,13 @@ const AddLogModal = () => {
   };
 
   return (
-    <form id="add-log-modal" className="modal" style={modalStyle}>
+    <form id="edit-log-modal" className="modal" style={modalStyle}>
       <div className="modal-content">
-        <h4>Enter System Log</h4>
+        <h4>Edit Log</h4>
         <div className="row">
           <div className="input-field">
             <input type="text" name="title" value={title} onChange={onChange} />
-            <label htmlFor="message" className="active">
+            <label htmlFor="message" className="acvtive">
               Log Title
             </label>
           </div>
@@ -106,4 +127,4 @@ const modalStyle = {
   height: "75%",
 };
 
-export default AddLogModal;
+export default EditLogModal;

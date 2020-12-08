@@ -9,9 +9,9 @@ const IssueSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  action: {
+  attention: {
     type: String,
-    default: "Needs Attention",
+    required: true,
   },
   date: {
     type: Date,

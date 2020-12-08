@@ -11,6 +11,7 @@ import AuthState from "./context/auth/AuthState";
 import LogState from "./context/logs/LogState";
 import PrivateRoute from "../src/context/routing/PrivateRoute";
 import AddLogModal from "./logs/AddLogModal";
+import EditLogModal from "./logs/EditLogModal";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <PrivateRoute exact path="/logs" component={Home} />
           </Switch>
           <AddLogModal />
+          <EditLogModal />
         </div>
       </AuthState>
     </LogState>

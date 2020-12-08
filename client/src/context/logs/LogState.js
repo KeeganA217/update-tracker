@@ -92,7 +92,7 @@ const LogState = (props) => {
     };
 
     try {
-      const res = await axios.put(`/api/contacts/${log._id}`, log, config);
+      const res = await axios.put(`/api/issues/${log.id}`, log, config);
       dispatch({
         type: UPDATE_LOGS,
         payload: res.data,
