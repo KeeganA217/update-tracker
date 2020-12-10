@@ -1,6 +1,6 @@
 import React from "react";
-import Search from "./Search";
 import Logs from "../logs/Logs";
+import Search from "./Search";
 
 const Home = () => {
   return (

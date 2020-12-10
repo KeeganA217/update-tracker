@@ -18,9 +18,7 @@ const Navbar = () => {
 
   const authLinks = (
     <Fragment>
-      <li className="exit chip black white-text">
-        {user && user.firstName + user.lastName}
-      </li>
+      <li className="exit white-text">Welcome, {user && user.firstName}</li>
       <li>
         <a
           onClick={onLogout}

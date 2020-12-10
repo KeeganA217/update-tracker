@@ -1,9 +1,13 @@
 import React, { useState, useContext } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
+import AuthContext from "../context/auth/authContext";
 
 const AddLogModal = () => {
   const logContext = useContext(LogContext);
+  const authContext = useContext(AuthContext);
+
+  const { user } = authContext;
 
   const { addLog } = logContext;
 
@@ -11,10 +15,11 @@ const AddLogModal = () => {
     title: "",
     description: "",
     attention: "",
+    author: user.firstName,
     date: new Date(),
   });
 
-  const { title, description, attention } = log;
+  const { title, description, attention, author } = log;
 
   const onChange = (e) => setLog({ ...log, [e.target.name]: e.target.value });
 
@@ -27,36 +32,44 @@ const AddLogModal = () => {
     }
 
     addLog(log);
-    console.log(attention);
 
     setLog({
       title: "",
       description: "",
       attention: "",
+      author: user.firstName,
     });
   };
 
   return (
-    <form id="add-log-modal" className="modal" style={modalStyle}>
+    <form
+      id="add-log-modal"
+      className="modal modal-fixed-footer"
+      style={modalStyle}
+    >
       <div className="modal-content">
-        <h4>Enter System Log</h4>
+        <h4>Open New Issue</h4>
         <div className="row">
           <div className="input-field">
             <input type="text" name="title" value={title} onChange={onChange} />
-            <label htmlFor="message" className="active">
+            <label htmlFor="title" className="active">
               Log Title
             </label>
           </div>
         </div>
         <div className="input-field">
-          <input
+          <textarea
             type="text"
             name="description"
+            placeholder="Enter Description...."
             value={description}
             onChange={onChange}
           />
-          <label htmlFor="message" className="active">
-            Log Description
+        </div>
+        <div className="input-field">
+          <input type="text" name="author" value={author} onChange={onChange} />
+          <label htmlFor="author" className="active">
+            Created By
           </label>
         </div>
         <div className="row">

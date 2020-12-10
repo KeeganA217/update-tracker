@@ -22,26 +22,25 @@ const Logs = () => {
   }, []);
 
   return (
-    <div className="container">
-      <ul className="collection with-header">
-        <li className="collection-header">
-          <h4 className="center">System Logs</h4>
-        </li>
-        {!logs ? (
-          <p className="center">No logs found..</p>
-        ) : (
-          logs.map((log) => <LogItem log={log} key={log._id} />)
-        )}
-      </ul>
-      <div className="fixed-action-btn">
-        <a
-          href="#add-log-modal"
-          className="btn-floating pulse btn-large green darken-2 modal-trigger tooltipped"
-          data-tooltip="Add New Log"
-          data-position="left"
-        >
-          <i className="large material-icons">add</i>
-        </a>
+    <div id="logs">
+      <div className="container">
+        <div className="row ">
+          {!logs ? (
+            <p className="center">No logs found..</p>
+          ) : (
+            logs.map((log) => <LogItem log={log} key={log._id} />)
+          )}
+        </div>
+        <div className="fixed-action-btn">
+          <a
+            href="#add-log-modal"
+            className="btn-floating pulse btn-large green darken-2 modal-trigger tooltipped"
+            data-tooltip="Open New Issue"
+            data-position="left"
+          >
+            <i className="large material-icons">add</i>
+          </a>
+        </div>
       </div>
     </div>
   );

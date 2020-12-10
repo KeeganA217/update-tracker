@@ -35,13 +35,14 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { title, description, attention } = req.body;
+    const { title, description, attention, author } = req.body;
 
     try {
       const newIssue = new Issue({
         title,
         description,
         attention,
+        author,
       });
 
       const issue = await newIssue.save();

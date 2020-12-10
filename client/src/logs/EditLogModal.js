@@ -58,27 +58,25 @@ const EditLogModal = () => {
   };
 
   return (
-    <form id="edit-log-modal" className="modal" style={modalStyle}>
+    <form
+      id="edit-log-modal"
+      className="modal modal-fixed-footer"
+      style={modalStyle}
+    >
       <div className="modal-content">
-        <h4>Edit Log</h4>
+        <h4>Edit Pending Issue</h4>
         <div className="row">
           <div className="input-field">
             <input type="text" name="title" value={title} onChange={onChange} />
-            <label htmlFor="message" className="acvtive">
-              Log Title
-            </label>
           </div>
         </div>
         <div className="input-field">
-          <input
+          <textarea
             type="text"
             name="description"
             value={description}
             onChange={onChange}
           />
-          <label htmlFor="message" className="active">
-            Log Description
-          </label>
         </div>
         <div className="row">
           <div className="input-field">

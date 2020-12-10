@@ -13,6 +13,10 @@ const IssueSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  author: {
+    type: String,
+    requried: true,
+  },
   date: {
     type: Date,
     default: Date.now,
