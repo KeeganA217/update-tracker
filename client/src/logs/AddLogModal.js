@@ -15,7 +15,7 @@ const AddLogModal = () => {
     title: "",
     description: "",
     attention: "",
-    author: user.firstName,
+    author: "",
     date: new Date(),
   });
 
@@ -37,7 +37,7 @@ const AddLogModal = () => {
       title: "",
       description: "",
       attention: "",
-      author: user.firstName,
+      author: "",
     });
   };
 

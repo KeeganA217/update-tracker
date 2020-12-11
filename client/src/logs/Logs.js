@@ -2,11 +2,12 @@ import React, { useEffect, useContext } from "react";
 import LogItem from "./LogItem";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Logs = () => {
   const logContext = useContext(LogContext);
 
-  const { logs, getLogs } = logContext;
+  const { logs, getLogs, filtered, loading } = logContext;
 
   useEffect(() => {
     getLogs();
@@ -25,12 +26,33 @@ const Logs = () => {
     <div id="logs">
       <div className="container">
         <div className="row ">
-          {!logs ? (
-            <p className="center">No logs found..</p>
+          {logs !== null && !loading ? (
+            <TransitionGroup>
+              {filtered !== null
+                ? filtered.map((log) => (
+                    <CSSTransition
+                      key={log._id}
+                      timeout={300}
+                      classNames="item"
+                    >
+                      <LogItem log={log} />
+                    </CSSTransition>
+                  ))
+                : logs.map((log) => (
+                    <CSSTransition
+                      key={log._id}
+                      timeout={300}
+                      classNames="item"
+                    >
+                      <LogItem log={log} />
+                    </CSSTransition>
+                  ))}
+            </TransitionGroup>
           ) : (
-            logs.map((log) => <LogItem log={log} key={log._id} />)
+            <h4>No Currently Open Issues...</h4>
           )}
         </div>
+
         <div className="fixed-action-btn">
           <a
             href="#add-log-modal"

@@ -48,7 +48,7 @@ export default (state, action) => {
         ...state,
         filtered: state.logs.filter((log) => {
           const regex = new RegExp(`${action.payload}`, "gi");
-          return log.name.match(regex) || log.email.match(regex);
+          return log.title.match(regex);
         }),
       };
     case CLEAR_FILTER:

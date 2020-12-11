@@ -9,7 +9,7 @@ const EditLogModal = () => {
 
   const { user } = authContext;
 
-  const { updateLog, current } = logContext;
+  const { updateLog, current, clearCurrent } = logContext;
 
   const [log, setLog] = useState({
     title: "",
@@ -49,6 +49,8 @@ const EditLogModal = () => {
 
       M.toast({ html: `Log updated by ${user.firstName}` });
     }
+
+    clearCurrent();
 
     setLog({
       title: "",

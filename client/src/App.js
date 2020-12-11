@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import "materialize-css/dist/css/materialize.min.css";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
@@ -12,6 +12,11 @@ import LogState from "./context/logs/LogState";
 import PrivateRoute from "../src/context/routing/PrivateRoute";
 import AddLogModal from "./logs/AddLogModal";
 import EditLogModal from "./logs/EditLogModal";
+import setAuthToken from "./context/setAuthToken";
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 function App() {
   return (

@@ -5,9 +5,11 @@ import M from "materialize-css/dist/js/materialize.min.js";
 const Login = (props) => {
   const authContext = useContext(AuthContext);
 
-  const { login, error, clearErrors, isAuthenticated } = authContext;
+  const { login, error, clearErrors, isAuthenticated, loadUser } = authContext;
 
   useEffect(() => {
+    loadUser();
+
     if (isAuthenticated) {
       props.history.push("/logs");
     }
