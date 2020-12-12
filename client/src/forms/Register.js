@@ -126,18 +126,6 @@ const Register = (props) => {
               <i className="material-icons right">send</i>
             </button>
           </div>
-          <div className="col s12 center-align">
-            <p className="flow-text">
-              Already registered?{" "}
-              <a
-                href="/"
-                className="waves-effect waves-light btn btn-small teal lighten-1"
-              >
-                <i className="material-icons right">subdirectory_arrow_right</i>
-                Click Here
-              </a>
-            </p>
-          </div>
         </div>
       </div>
     </form>

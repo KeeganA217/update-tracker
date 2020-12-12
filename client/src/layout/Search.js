@@ -22,16 +22,12 @@ const Search = () => {
     }
   };
 
-  // const onChange = (e) => {
-  //   filterLogs(text.current.value);
-  // };
-
   const onClick = () => {
     clearFilter();
   };
 
   return (
-    <nav style={{ marginBottom: "20px" }} className="blue lighten-2 container">
+    <nav className="blue lighten-2 container search-bar z-depth-2">
       <div className="nav-wrapper">
         <form>
           <div className="input-field">
@@ -44,7 +40,7 @@ const Search = () => {
               autoComplete="off"
             />
             <label className="label-icon" htmlFor="search">
-              <i className="material-icons">search</i>
+              <i className="material-icons valign-wrapper">search</i>
             </label>
             <i onClick={onClick} className="material-icons">
               close

@@ -20,7 +20,7 @@ button {
   margin: 20px 0;
 }
 
-nav {
+.navbar {
   margin-bottom: 20px;
 }
 
@@ -30,6 +30,22 @@ nav {
 
 .flow-text {
   font-size: 18px;
+}
+
+.card-link:hover {
+  background-color: gray;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
+textarea {
+  outline-color: gray;
+  border: 1px solid #ccc;
+}
+
+.search-bar {
+  margin-bottom: 20px;
 }
 
 .item-enter {
@@ -45,4 +61,8 @@ nav {
 .item-exit-active {
   opacity: 0;
   transition: opacity 400ms ease-in;
+}
+
+.action {
+  font-size: 40px;
 }

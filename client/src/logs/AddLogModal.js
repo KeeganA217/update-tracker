@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
 import AuthContext from "../context/auth/authContext";
@@ -28,7 +28,11 @@ const AddLogModal = () => {
     if (title === "" || description === "" || attention === "") {
       M.toast({ html: "Please enter a title and description.." });
     } else {
-      setLog({ ...log, [e.target.name]: e.target.value });
+      setLog({
+        ...log,
+        [e.target.name]: e.target.value,
+        author: user.firstName,
+      });
     }
 
     addLog(log);
@@ -37,7 +41,7 @@ const AddLogModal = () => {
       title: "",
       description: "",
       attention: "",
-      author: "",
+      author,
     });
   };
 
@@ -51,7 +55,13 @@ const AddLogModal = () => {
         <h4>Open New Issue</h4>
         <div className="row">
           <div className="input-field">
-            <input type="text" name="title" value={title} onChange={onChange} />
+            <input
+              type="text"
+              name="title"
+              value={title}
+              onChange={onChange}
+              autoComplete="off"
+            />
             <label htmlFor="title" className="active">
               Log Title
             </label>
@@ -64,13 +74,8 @@ const AddLogModal = () => {
             placeholder="Enter Description...."
             value={description}
             onChange={onChange}
+            autoComplete="off"
           />
-        </div>
-        <div className="input-field">
-          <input type="text" name="author" value={author} onChange={onChange} />
-          <label htmlFor="author" className="active">
-            Created By
-          </label>
         </div>
         <div className="row">
           <div className="input-field">

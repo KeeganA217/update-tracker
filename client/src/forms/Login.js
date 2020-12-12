@@ -82,18 +82,6 @@ const Login = (props) => {
               <i className="material-icons right">send</i>
             </button>
           </div>
-          <div className="col s12 center-align">
-            <p className="flow-text">
-              Not yet registered?{" "}
-              <a
-                href="/register"
-                className="waves-effect waves-light btn btn-small teal lighten-1"
-              >
-                <i className="material-icons right">subdirectory_arrow_right</i>
-                Click Here
-              </a>
-            </p>
-          </div>
         </form>
       </div>
     </div>

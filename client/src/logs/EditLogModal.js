@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
 import AuthContext from "../context/auth/authContext";
+import moment from "moment";
 
 const EditLogModal = () => {
   const logContext = useContext(LogContext);
@@ -20,12 +21,15 @@ const EditLogModal = () => {
 
   const { title, description, attention } = log;
 
+  const time = moment(current.date).format("MMMM Do YYYY, h:mm:ss a");
+
   useEffect(() => {
     if (current) {
       setLog({
         title: current.title,
         description: current.description,
         attention: current.attention,
+        id: current._id,
       });
     }
   }, [current]);
@@ -107,6 +111,14 @@ const EditLogModal = () => {
               </label>
             </p>
           </div>
+          <p>
+            <strong>Issue ID: </strong>
+            {current._id}
+          </p>
+          <p>
+            Created By <strong>{current.author}</strong>on{" "}
+            <strong>{time}</strong>
+          </p>
         </div>
       </div>
       <div className="modal-footer">

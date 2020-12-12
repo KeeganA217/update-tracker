@@ -26,7 +26,7 @@ const Logs = () => {
     <div id="logs">
       <div className="container">
         <div className="row ">
-          {logs !== null && !loading ? (
+          {logs && !loading ? (
             <TransitionGroup>
               {filtered !== null
                 ? filtered.map((log) => (

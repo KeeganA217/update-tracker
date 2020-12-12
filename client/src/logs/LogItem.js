@@ -23,15 +23,11 @@ const LogItem = ({ log }) => {
   const newDate = moment(new Date()).format("MMMM Do YYYY, h:mm:ss a");
 
   return (
-    <div className="col s12 l6 ">
-      <div className="card blue-grey ">
+    <div className="col s12 m6 l6">
+      <div className="card blue-grey z-depth-5">
         <div className="card-content white-text">
           <span className="card-title">{title}</span>
           <p className="flow-text">{description}</p>
-          <p className="grey-text text-lighten-1">
-            Created by <span className="black-text">{author}</span> on{" "}
-            <span className="black-text">{time}</span>
-          </p>
         </div>
         <div className="card-action">
           <a
@@ -39,15 +35,15 @@ const LogItem = ({ log }) => {
             className="modal-trigger"
             onClick={() => setCurrent(log)}
           >
-            <i className="material-icons small amber-text text-accent-2">
+            <i className="material-icons small card-link amber-text text-accent-2">
               edit
             </i>
           </a>
           <a href="#!" onClick={onDelete} className="">
-            <i className="material-icons small white-text">delete</i>
+            <i className="material-icons small white-text card-link">delete</i>
           </a>
           <i
-            className={`material-icons small right ${
+            className={`material-icons action right ${
               attention === "Needs Attention" ? "red-text" : "green-text"
             }`}
           >

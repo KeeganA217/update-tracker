@@ -18,7 +18,9 @@ const Navbar = () => {
 
   const authLinks = (
     <Fragment>
-      <li className="exit white-text">Welcome, {user && user.firstName}</li>
+      <li className="exit white-text hide-on-small-only">
+        Welcome, {user && user.firstName}
+      </li>
       <li>
         <a
           onClick={onLogout}
@@ -31,16 +33,30 @@ const Navbar = () => {
       </li>
     </Fragment>
   );
+  const notAuthLinks = (
+    <Fragment>
+      <li>
+        <a href="/login" className="">
+          Login
+        </a>
+      </li>
+      <li>
+        <a href="/register" className="">
+          Register
+        </a>
+      </li>
+    </Fragment>
+  );
 
   return (
-    <nav>
+    <nav className="navbar z-depth-2">
       <div className="nav-wrapper red accent-2">
         <div className="container">
-          <a className="brand-logo">
-            <i className=" nav-icon material-icons">error_outline</i>Logo
+          <a className="brand-logo valign-wrapper">
+            <i className="material-icons">adb</i>BugTracker
           </a>
           <ul className="right valign-wrapper">
-            {isAuthenticated ? authLinks : null}
+            {isAuthenticated ? authLinks : notAuthLinks}
           </ul>
         </div>
       </div>

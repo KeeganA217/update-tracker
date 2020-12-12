@@ -18,7 +18,7 @@ import {
 const LogState = (props) => {
   const initialState = {
     logs: null,
-    current: null,
+    current: {},
     filtered: null,
     error: null,
   };

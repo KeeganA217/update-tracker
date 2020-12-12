@@ -13,6 +13,7 @@ import PrivateRoute from "../src/context/routing/PrivateRoute";
 import AddLogModal from "./logs/AddLogModal";
 import EditLogModal from "./logs/EditLogModal";
 import setAuthToken from "./context/setAuthToken";
+import Landing from "./layout/Landing";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -25,7 +26,8 @@ function App() {
         <div>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
             <PrivateRoute exact path="/logs" component={Home} />
           </Switch>
