@@ -27,7 +27,7 @@ const Search = () => {
   };
 
   return (
-    <nav className="blue lighten-2 container search-bar z-depth-2">
+    <nav className="grey lighten-4 container search-bar z-depth-3">
       <div className="nav-wrapper">
         <form>
           <div className="input-field">
@@ -40,7 +40,7 @@ const Search = () => {
               autoComplete="off"
             />
             <label className="label-icon" htmlFor="search">
-              <i className="material-icons valign-wrapper">search</i>
+              <i className="material-icons valign-wrapper black-text">search</i>
             </label>
             <i onClick={onClick} className="material-icons">
               close

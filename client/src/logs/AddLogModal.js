@@ -1,6 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
+import moment from "moment";
 import AuthContext from "../context/auth/authContext";
 
 const AddLogModal = () => {
@@ -16,32 +17,48 @@ const AddLogModal = () => {
     description: "",
     attention: "",
     author: "",
+    due: "",
     date: new Date(),
   });
 
-  const { title, description, attention, author } = log;
+  const { title, description, attention, author, due, date } = log;
+
+  useEffect(() => {
+    var elems = document.querySelectorAll(".datepicker");
+    M.Datepicker.init(elems, {
+      container: "body",
+      autoClose: true,
+      onSelect: (date) =>
+        setLog({
+          due: moment(date).format("MMM Do YYYY"),
+          author: user.firstName,
+          title: title,
+          description: description,
+          date: moment(new Date()).format("MMM Do YYYY"),
+        }),
+    });
+  });
 
   const onChange = (e) => setLog({ ...log, [e.target.name]: e.target.value });
 
   const onSubmit = (e) => {
     e.preventDefault();
     if (title === "" || description === "" || attention === "") {
-      M.toast({ html: "Please enter a title and description.." });
+      M.toast({ html: "Please complete all fields.." });
     } else {
       setLog({
         ...log,
-        [e.target.name]: e.target.value,
-        author: user.firstName,
       });
     }
-
+    console.log(log);
     addLog(log);
 
     setLog({
       title: "",
       description: "",
       attention: "",
-      author,
+      author: "",
+      due: "",
     });
   };
 
@@ -67,16 +84,29 @@ const AddLogModal = () => {
             </label>
           </div>
         </div>
-        <div className="input-field">
-          <textarea
-            type="text"
-            name="description"
-            placeholder="Enter Description...."
-            value={description}
-            onChange={onChange}
-            autoComplete="off"
-          />
+        <div className="row">
+          <div className="input-field">
+            <input
+              type="text"
+              name="description"
+              value={description}
+              onChange={onChange}
+              autoComplete="off"
+            />
+            <label htmlFor="description" className="active">
+              Description
+            </label>
+          </div>
         </div>
+        <div className="row ">
+          <div className="input-field">
+            <input className="datepicker" type="text" name="due" value={due} />
+            <label htmlFor="due" className="active">
+              Due Date
+            </label>
+          </div>
+        </div>
+
         <div className="row">
           <div className="input-field">
             <p>

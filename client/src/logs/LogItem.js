@@ -12,21 +12,35 @@ const LogItem = ({ log }) => {
 
   const { deleteLog, setCurrent } = logContext;
 
-  const { _id, title, attention, date, description, author } = log;
+  const { _id, title, attention, date, description, due } = log;
 
   const onDelete = () => {
     deleteLog(_id);
     M.toast({ html: "Log item has been removed" });
   };
 
-  const time = moment(date).format("MMMM Do YYYY, h:mm:ss a");
-  const newDate = moment(new Date()).format("MMMM Do YYYY, h:mm:ss a");
+  var dueDate = moment(due, "MMM DD, YYYY").fromNow(true);
 
   return (
-    <div className="col s12 m6 l6">
-      <div className="card blue-grey z-depth-5">
+    <div className="col s12 m6 l4">
+      <div className="card blue-grey z-depth-5 medium">
         <div className="card-content white-text">
-          <span className="card-title">{title}</span>
+          <span className="card-title">
+            {title}
+
+            <span
+              className={`due-date right ${
+                dueDate <= "3"
+                  ? "green lighten-2"
+                  : dueDate <= "6"
+                  ? "amber lighten-2"
+                  : "red darken-1"
+              }`}
+            >
+              <p>Due in {dueDate}</p>
+            </span>
+          </span>
+
           <p className="flow-text">{description}</p>
         </div>
         <div className="card-action">

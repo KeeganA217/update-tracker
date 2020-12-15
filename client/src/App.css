@@ -20,10 +20,6 @@ button {
   margin: 20px 0;
 }
 
-.navbar {
-  margin-bottom: 20px;
-}
-
 .exit {
   margin-right: 10px;
 }
@@ -45,7 +41,8 @@ textarea {
 }
 
 .search-bar {
-  margin-bottom: 20px;
+  margin: 20px auto 30px auto;
+  border-radius: 6px;
 }
 
 .item-enter {
@@ -65,4 +62,32 @@ textarea {
 
 .action {
   font-size: 40px;
+}
+
+.parallax-image {
+  background-position: center center;
+  background-size: auto;
+  background-repeat: no-repeat;
+}
+
+.landing-card {
+  border-radius: 12px;
+  border-bottom: 3px solid black;
+  border-top: 3px solid black;
+}
+
+.landing-card-1 {
+  border-radius: 12px;
+  height: 425px;
+}
+
+.landing-card-1 p {
+  font-size: 18px;
+}
+
+.due-date {
+  border-radius: 6px;
+  padding: 0 5px;
+  font-size: 16px;
+  font-weight: 600;
 }

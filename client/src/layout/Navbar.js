@@ -1,6 +1,7 @@
 import React, { Fragment, useContext, useEffect } from "react";
 import AuthContext from "../context/auth/authContext";
 import M from "materialize-css/dist/js/materialize.min.js";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const authContext = useContext(AuthContext);
@@ -35,15 +36,32 @@ const Navbar = () => {
   );
   const notAuthLinks = (
     <Fragment>
-      <li>
-        <a href="/login" className="">
-          Login
-        </a>
+      <li className="change">
+        <NavLink
+          to="/"
+          exact
+          activeStyle={{ fontWeight: "bold", color: "black", fontSize: "20px" }}
+        >
+          Home
+        </NavLink>
       </li>
-      <li>
-        <a href="/register" className="">
+      <li className="change">
+        <NavLink
+          to="/login"
+          exact
+          activeStyle={{ fontWeight: "bold", color: "black", fontSize: "20px" }}
+        >
+          Login
+        </NavLink>
+      </li>
+      <li className="change">
+        <NavLink
+          to="/register"
+          exact
+          activeStyle={{ fontWeight: "bold", color: "black", fontSize: "20px" }}
+        >
           Register
-        </a>
+        </NavLink>
       </li>
     </Fragment>
   );
@@ -53,7 +71,7 @@ const Navbar = () => {
       <div className="nav-wrapper red accent-2">
         <div className="container">
           <a className="brand-logo valign-wrapper">
-            <i className="material-icons">adb</i>BugTracker
+            <i className="material-icons">adb</i>TeamSolve
           </a>
           <ul className="right valign-wrapper">
             {isAuthenticated ? authLinks : notAuthLinks}

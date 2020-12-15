@@ -16,12 +16,12 @@ const EditLogModal = () => {
     title: "",
     description: "",
     attention: "",
-    date: new Date(),
+    id: "",
+    author: "",
+    due: "",
   });
 
-  const { title, description, attention } = log;
-
-  const time = moment(current.date).format("MMMM Do YYYY, h:mm:ss a");
+  const { title, description, attention, author, id, date, due } = log;
 
   useEffect(() => {
     if (current) {
@@ -30,8 +30,20 @@ const EditLogModal = () => {
         description: current.description,
         attention: current.attention,
         id: current._id,
+        due: current.due,
+        author: current.author,
       });
     }
+
+    var elems = document.querySelectorAll(".datepicker");
+    M.Datepicker.init(elems, {
+      container: "body",
+      autoClose: true,
+      onSelect: (date) =>
+        setLog({
+          due: moment(date).format("MMM Do YYYY"),
+        }),
+    });
   }, [current]);
 
   const onChange = (e) => setLog({ ...log, [e.target.name]: e.target.value });
@@ -39,14 +51,15 @@ const EditLogModal = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     if (title === "" || description === "" || attention === "") {
-      M.toast({ html: "Please enter a title and description.." });
+      M.toast({ html: "Please complete all fields..." });
     } else {
       const updLog = {
-        id: current._id,
+        id,
         title,
         description,
         attention,
-        date: new Date(),
+        author,
+        due,
       };
 
       updateLog(updLog);
@@ -60,6 +73,7 @@ const EditLogModal = () => {
       title: "",
       description: "",
       attention: "",
+      due: "",
     });
   };
 
@@ -77,12 +91,22 @@ const EditLogModal = () => {
           </div>
         </div>
         <div className="input-field">
-          <textarea
+          <input
             type="text"
             name="description"
             value={description}
             onChange={onChange}
           />
+          <div className="row ">
+            <div className="input-field">
+              <input
+                className="datepicker"
+                type="text"
+                name="due"
+                value={due}
+              />
+            </div>
+          </div>
         </div>
         <div className="row">
           <div className="input-field">
@@ -113,11 +137,12 @@ const EditLogModal = () => {
           </div>
           <p>
             <strong>Issue ID: </strong>
-            {current._id}
+            {id}
           </p>
           <p>
-            Created By <strong>{current.author}</strong>on{" "}
-            <strong>{time}</strong>
+            <strong>Created By: </strong>
+            {author} <strong>on </strong>{" "}
+            {moment(date).format("MMM Do YYYY, h:mm:ss a")}
           </p>
         </div>
       </div>

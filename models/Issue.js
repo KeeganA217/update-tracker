@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { stringify } = require("uuid");
 
 const IssueSchema = mongoose.Schema({
   title: {
@@ -16,6 +17,10 @@ const IssueSchema = mongoose.Schema({
   author: {
     type: String,
     requried: true,
+  },
+  due: {
+    type: String,
+    required: true,
   },
   date: {
     type: Date,

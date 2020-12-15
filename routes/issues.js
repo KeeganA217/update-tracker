@@ -29,13 +29,14 @@ router.post(
     check("title", "Name is required").not().isEmpty(),
     check("description", "Please enter a description").not().isEmpty(),
     check("attention", "Please select the attention needed").not().isEmpty(),
+    check("due", "Please select the due date...").not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { title, description, attention, author } = req.body;
+    const { title, description, attention, author, due } = req.body;
 
     try {
       const newIssue = new Issue({
@@ -43,6 +44,7 @@ router.post(
         description,
         attention,
         author,
+        due,
       });
 
       const issue = await newIssue.save();
@@ -57,13 +59,14 @@ router.post(
 // @desc       Update issues
 // @access     Private
 router.put("/:id", auth, async (req, res) => {
-  const { title, description, attention } = req.body;
+  const { title, description, attention, due } = req.body;
 
   const issueFields = {};
 
   if (title) issueFields.title = title;
   if (description) issueFields.description = description;
   if (attention) issueFields.attention = attention;
+  if (due) issueFields.due = due;
 
   try {
     let issue = await Issue.findById(req.params.id);
