@@ -1,9 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
-import Tech from "../images/technology.jpg";
-import Report from "../images/report.jpg";
-import Work from "../images/work.jpg";
-import Celebrate from "../images/celebrate.jpg";
+import Report from "../images/report.png";
+import Work from "../images/work.png";
+import Sleep from "../images/sleep.png";
+import Group from "../images/group.png";
 import AuthContext from "../context/auth/authContext";
 
 const Landing = (props) => {
@@ -29,73 +29,74 @@ const Landing = (props) => {
 
   useEffect(() => {
     var elems = document.querySelectorAll(".parallax");
-    var instances = M.Parallax.init(elems, 0);
+    M.Parallax.init(elems, 0);
   }, []);
 
   return (
     <div>
-      <div className="parallax-container">
-        <div className="parallax">
-          <img src={Tech} className="parallax-image"></img>
-        </div>
-      </div>
-      <div className="section white">
-        <div className="row ">
-          <div className="col s12 m10 l8 offset-l2">
-            <div className="card z-depth-3 purple lighten-4 purple-text text-lighten-2 landing-card">
-              <div className="card-content center-align">
-                <h4>Team based Issue Resolution has never been Simpler!</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="">
+      <section className="container title-card">
+        <div className="card z-depth-3 hoverable">
           <div className="row">
-            <div className="col s12 m6 l4">
-              <div className="card z-depth-3 landing-card-1">
-                <div className="card-image">
-                  <img src={Report}></img>
-                  <span className="card-title">
-                    <h3>Step 1</h3>
-                  </span>
-                </div>
-                <div className="card-content center-align">
-                  <p>Open a ticket for an existing issue.</p>
-                </div>
-              </div>
+            <div className="col s12 l6 offset-l1">
+              <h2>
+                The <span className="indigo-text">Team Based </span>approach to
+                issue resolution has <span className="accent">never</span> been
+                simpler.{" "}
+              </h2>
             </div>
-            <div className="col s12 m6 l4">
-              <div className="card z-depth-3 landing-card-1">
-                <div className="card-image">
-                  <img src={Work}></img>
-                  <span className="card-title">
-                    <h3>Step 2</h3>
-                  </span>
-                </div>
-                <div className="card-content center-align">
-                  <p>
-                    Collaborate a solution amongst the team, all from different
-                    locations. Provide updates and even change deadlines.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col s12 m6 l4">
-              <div className="card z-depth-2 landing-card-1">
-                <div className="card-image">
-                  <img src={Celebrate}></img>
-                  <span className="card-title">
-                    <h3>Step 3</h3>
-                  </span>
-                </div>
-                <div className="card-content center-align">
-                  <p>Complete the Issue and breathe easier!</p>
-                </div>
-              </div>
+            <div className="col s12 m4 l4">
+              <img
+                src={Group}
+                alt="Loading..."
+                className="responsive-img"
+              ></img>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+      <section className="container section">
+        <div className="row">
+          <div className="col s12 m4 l4">
+            <img src={Report} alt="Loading..." className="responsive-img"></img>
+          </div>
+          <div className="col s12 l6 offset-l1">
+            <h3>
+              Step 1 - <span className="indigo-text">Create</span>
+            </h3>
+            <p className="flow-text">
+              Create a new issue and add to the dashboard for your team to
+              review.
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col s12 m4 l4 push-l7 offset-l1">
+            <img src={Work} alt="Loading..." className="responsive-img"></img>
+          </div>
+          <div className="col s12 l6 pull-l5 right-align">
+            <h3>
+              Step 2 - <span className="indigo-text">Collaborate</span>
+            </h3>
+            <p className="flow-text">
+              Collaborate with your team on a solution. Set deadlines and even
+              provide updates, all in real time.
+            </p>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col s12 m4 l4">
+            <img src={Sleep} alt="Loading..." className="responsive-img"></img>
+          </div>
+          <div className="col s12 l6 offset-l1">
+            <h3>
+              Step 3 - <span className="indigo-text">Apply</span>
+            </h3>
+            <p className="flow-text">
+              Apply the solution, close out the issue, and sleep easier!
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

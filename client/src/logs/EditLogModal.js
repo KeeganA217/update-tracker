@@ -12,17 +12,6 @@ const EditLogModal = () => {
 
   const { updateLog, current, clearCurrent } = logContext;
 
-  const [log, setLog] = useState({
-    title: "",
-    description: "",
-    attention: "",
-    id: "",
-    author: "",
-    due: "",
-  });
-
-  const { title, description, attention, author, id, date, due } = log;
-
   useEffect(() => {
     if (current) {
       setLog({
@@ -32,6 +21,7 @@ const EditLogModal = () => {
         id: current._id,
         due: current.due,
         author: current.author,
+        created: current.created,
       });
     }
 
@@ -41,10 +31,26 @@ const EditLogModal = () => {
       autoClose: true,
       onSelect: (date) =>
         setLog({
+          id: current._id,
           due: moment(date).format("MMM Do YYYY"),
+          author: current.author,
+          title: current.title,
+          description: current.description,
+          attention: "Needs Attention",
         }),
     });
-  }, [current]);
+  }, [logContext, current]);
+
+  const [log, setLog] = useState({
+    title: "",
+    description: "",
+    attention: "",
+    id: "",
+    author: "",
+    due: "",
+  });
+
+  const { title, description, attention, author, id, created, due } = log;
 
   const onChange = (e) => setLog({ ...log, [e.target.name]: e.target.value });
 
@@ -53,28 +59,12 @@ const EditLogModal = () => {
     if (title === "" || description === "" || attention === "") {
       M.toast({ html: "Please complete all fields..." });
     } else {
-      const updLog = {
-        id,
-        title,
-        description,
-        attention,
-        author,
-        due,
-      };
-
-      updateLog(updLog);
+      updateLog(log);
 
       M.toast({ html: `Log updated by ${user.firstName}` });
     }
 
     clearCurrent();
-
-    setLog({
-      title: "",
-      description: "",
-      attention: "",
-      due: "",
-    });
   };
 
   return (
@@ -104,6 +94,7 @@ const EditLogModal = () => {
                 type="text"
                 name="due"
                 value={due}
+                onChange={onChange}
               />
             </div>
           </div>
@@ -142,7 +133,7 @@ const EditLogModal = () => {
           <p>
             <strong>Created By: </strong>
             {author} <strong>on </strong>{" "}
-            {moment(date).format("MMM Do YYYY, h:mm:ss a")}
+            {moment(created).format("MMMM Do YYYY, h:mm:ss a")}
           </p>
         </div>
       </div>
@@ -161,7 +152,7 @@ const EditLogModal = () => {
 
 const modalStyle = {
   width: "75%",
-  height: "75%",
+  height: "85%",
 };
 
 export default EditLogModal;

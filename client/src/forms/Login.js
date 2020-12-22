@@ -74,7 +74,7 @@ const Login = (props) => {
           </div>
           <div className="col s12 center-align">
             <button
-              className="btn waves-effect waves-light"
+              className="btn waves-effect waves-light grey darken-1 hoverable"
               type="submit"
               name="action"
             >

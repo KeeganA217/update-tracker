@@ -22,33 +22,25 @@ const Search = () => {
     }
   };
 
-  const onClick = () => {
-    clearFilter();
-  };
-
   return (
-    <nav className="grey lighten-4 container search-bar z-depth-3">
-      <div className="nav-wrapper">
-        <form>
+    <div className="container">
+      <div className="row">
+        <div className="col s12 l8 offset-l2">
           <div className="input-field">
+            <i className="material-icons prefix">search</i>
             <input
-              id="search"
-              type="search"
-              placeholder="Search Logs.."
+              id="icon-prefix"
+              type="text"
+              name="search"
               ref={text}
               onChange={onChange}
-              autoComplete="off"
+              className="validate"
             />
-            <label className="label-icon" htmlFor="search">
-              <i className="material-icons valign-wrapper black-text">search</i>
-            </label>
-            <i onClick={onClick} className="material-icons">
-              close
-            </i>
+            <label htmlFor="search">Search Logs...</label>
           </div>
-        </form>
+        </div>
       </div>
-    </nav>
+    </div>
   );
 };
 

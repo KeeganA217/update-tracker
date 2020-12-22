@@ -2,74 +2,84 @@ import React, { useContext } from "react";
 import moment from "moment";
 import LogContext from "../context/logs/logContext";
 import M from "materialize-css/dist/js/materialize.min.js";
-import AuthContext from "../context/auth/authContext";
 
 const LogItem = ({ log }) => {
   const logContext = useContext(LogContext);
-  const authContext = useContext(AuthContext);
-
-  const { user } = authContext;
 
   const { deleteLog, setCurrent } = logContext;
 
-  const { _id, title, attention, date, description, due } = log;
+  const { _id, title, attention, description, due } = log;
 
   const onDelete = () => {
     deleteLog(_id);
     M.toast({ html: "Log item has been removed" });
   };
 
-  var dueDate = moment(due, "MMM DD, YYYY").fromNow(true);
+  let dueDate;
+
+  if (attention === "Issue Resolved") {
+    dueDate = "Completed";
+  } else {
+    dueDate = moment(due, "DD").fromNow(true);
+  }
 
   return (
-    <div className="col s12 m6 l4">
-      <div className="card blue-grey z-depth-5 medium">
-        <div className="card-content white-text">
-          <span className="card-title">
-            {title}
-
-            <span
-              className={`due-date right ${
-                dueDate <= "3"
-                  ? "green lighten-2"
-                  : dueDate <= "6"
-                  ? "amber lighten-2"
-                  : "red darken-1"
+    <table className="highlight centered">
+      <tbody>
+        <tr>
+          <td className="td-title">
+            <p className="flow-text">{title}</p>
+          </td>
+          <td className="td-description">
+            <p className="flow-text">{description}</p>
+          </td>
+          <td className="td-attention">
+            <i
+              className={`material-icons action ${
+                attention === "Needs Attention" ? "red-text" : "green-text"
               }`}
             >
-              <p>Due in {dueDate}</p>
-            </span>
-          </span>
-
-          <p className="flow-text">{description}</p>
-        </div>
-        <div className="card-action">
-          <a
-            href="#edit-log-modal"
-            className="modal-trigger"
-            onClick={() => setCurrent(log)}
-          >
-            <i className="material-icons small card-link amber-text text-accent-2">
-              edit
+              {`${
+                attention === "Needs Attention"
+                  ? "do_not_disturb_alt"
+                  : "done_all"
+              }`}
             </i>
-          </a>
-          <a href="#!" onClick={onDelete} className="">
-            <i className="material-icons small white-text card-link">delete</i>
-          </a>
-          <i
-            className={`material-icons action right ${
-              attention === "Needs Attention" ? "red-text" : "green-text"
-            }`}
-          >
-            {`${
-              attention === "Needs Attention"
-                ? "do_not_disturb_alt"
-                : "done_all"
-            }`}
-          </i>
-        </div>
-      </div>
-    </div>
+          </td>
+          <td className="td-due">
+            <div
+              className={` due-date ${
+                dueDate === "Completed" ? "green lighten-2" : "amber lighten-2"
+              }`}
+            >
+              <p>
+                {attention === "Issue Resolved"
+                  ? "Completed"
+                  : `Due in ${dueDate}`}
+              </p>
+            </div>
+          </td>
+          <td className="td-edit">
+            <a
+              href="#edit-log-modal"
+              className="modal-trigger"
+              onClick={() => setCurrent(log)}
+            >
+              <i className="material-icons small card-link amber-text text-accent-2">
+                edit
+              </i>
+            </a>
+          </td>
+          <td className="td-delete">
+            <a href="#!" onClick={onDelete} className="">
+              <i className="material-icons small red-text text-accent-2 card-link">
+                delete
+              </i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   );
 };
 

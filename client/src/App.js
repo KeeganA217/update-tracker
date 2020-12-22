@@ -7,6 +7,7 @@ import Navbar from "./layout/Navbar";
 import Register from "./forms/Register";
 import Login from "./forms/Login";
 import Home from "./layout/Home";
+import Footer from "./layout/Footer";
 import AuthState from "./context/auth/AuthState";
 import LogState from "./context/logs/LogState";
 import PrivateRoute from "../src/context/routing/PrivateRoute";
@@ -23,7 +24,7 @@ function App() {
   return (
     <LogState>
       <AuthState>
-        <div>
+        <div className="app">
           <Navbar />
           <Switch>
             <Route exact path="/" component={Landing} />
@@ -33,6 +34,7 @@ function App() {
           </Switch>
           <AddLogModal />
           <EditLogModal />
+          <Footer />
         </div>
       </AuthState>
     </LogState>

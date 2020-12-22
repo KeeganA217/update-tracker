@@ -1,4 +1,4 @@
-import React, { Fragment, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../context/auth/authContext";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { NavLink } from "react-router-dom";
@@ -14,13 +14,15 @@ const Navbar = () => {
 
   useEffect(() => {
     var elems = document.querySelectorAll(".tooltipped");
-    var instances = M.Tooltip.init(elems, 0);
+    M.Tooltip.init(elems, 0);
+    var elem = document.querySelectorAll(".sidenav");
+    M.Sidenav.init(elem, { edge: "right" });
   }, [isAuthenticated]);
 
   const authLinks = (
-    <Fragment>
-      <li className="exit white-text hide-on-small-only">
-        Welcome, {user && user.firstName}
+    <div>
+      <li className="exit black-text hide-on-small-only">
+        <h6>Welcome, {user && user.firstName}</h6>
       </li>
       <li>
         <a
@@ -29,18 +31,22 @@ const Navbar = () => {
           className="tooltipped"
           data-tooltip="LogOut"
         >
-          <i className="material-icons">exit_to_app</i>
+          <i className="material-icons indigo-text">exit_to_app</i>
         </a>
       </li>
-    </Fragment>
+    </div>
   );
   const notAuthLinks = (
-    <Fragment>
+    <div>
       <li className="change">
         <NavLink
           to="/"
           exact
-          activeStyle={{ fontWeight: "bold", color: "black", fontSize: "20px" }}
+          activeStyle={{
+            fontWeight: "bold",
+            color: "indigo",
+            fontSize: "20px",
+          }}
         >
           Home
         </NavLink>
@@ -49,7 +55,11 @@ const Navbar = () => {
         <NavLink
           to="/login"
           exact
-          activeStyle={{ fontWeight: "bold", color: "black", fontSize: "20px" }}
+          activeStyle={{
+            fontWeight: "bold",
+            color: "indigo",
+            fontSize: "20px",
+          }}
         >
           Login
         </NavLink>
@@ -58,27 +68,46 @@ const Navbar = () => {
         <NavLink
           to="/register"
           exact
-          activeStyle={{ fontWeight: "bold", color: "black", fontSize: "20px" }}
+          activeStyle={{
+            fontWeight: "bold",
+            color: "indigo",
+            fontSize: "20px",
+          }}
         >
           Register
         </NavLink>
       </li>
-    </Fragment>
+    </div>
   );
 
   return (
-    <nav className="navbar z-depth-2">
-      <div className="nav-wrapper red accent-2">
-        <div className="container">
-          <a className="brand-logo valign-wrapper">
-            <i className="material-icons">adb</i>TeamSolve
-          </a>
-          <ul className="right valign-wrapper">
-            {isAuthenticated ? authLinks : notAuthLinks}
-          </ul>
+    <div>
+      <nav className="navbar z-depth-1 transparent">
+        <div className="nav-wrapper valign-wrapper">
+          <div className="container">
+            <a className="brand-logo" href="!#">
+              <i className="material-icons indigo-text">adb</i>
+              <span className="black-text">TeamSolve</span>
+            </a>
+            <a href="!#" data-target="mobile-demo" className="sidenav-trigger">
+              <i className="material-icons indigo-text">menu</i>
+            </a>
+            <ul className="right hide-on-med-and-down">
+              {isAuthenticated ? authLinks : notAuthLinks}
+            </ul>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+      <ul className="sidenav" id="mobile-demo">
+        {isAuthenticated ? authLinks : notAuthLinks}
+        <li>
+          <a className="sidenav-close" href="#!">
+            {" "}
+            <i className="material-icons indigo-text close-icon">close</i>
+          </a>
+        </li>
+      </ul>
+    </div>
   );
 };
 

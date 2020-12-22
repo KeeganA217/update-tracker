@@ -2,30 +2,49 @@ import React, { useEffect, useContext } from "react";
 import LogItem from "./LogItem";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
+import AuthContext from "../context/auth/authContext";
+import Loader from "../layout/Loader";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 const Logs = () => {
   const logContext = useContext(LogContext);
 
-  const { logs, getLogs, filtered, loading } = logContext;
+  const { getLogs, logs, filtered } = logContext;
+
+  const authContext = useContext(AuthContext);
+
+  const { loading } = authContext;
 
   useEffect(() => {
     getLogs();
     var elems = document.querySelectorAll(".modal", ".tooltipped");
-    var instances = M.Modal.init(elems, 0.5);
+    M.Modal.init(elems, 0.5);
 
     var elem = document.querySelectorAll(".tooltipped");
-    var instance = M.Tooltip.init(elem, {
+    M.Tooltip.init(elem, {
       margin: 16,
       inDuration: 1000,
       outDuration: 400,
     });
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div id="logs">
       <div className="container">
         <div className="row ">
+          <table className="centered">
+            <thead>
+              <tr>
+                <th className="th-title">Title</th>
+                <th className="th-description">Description</th>
+                <th className="th-attention">Attention</th>
+                <th className="th-due">Deadline</th>
+                <th className="th-edit">Edit</th>
+                <th className="th-delete">Delete</th>
+              </tr>
+            </thead>
+          </table>
           {logs && !loading ? (
             <TransitionGroup>
               {filtered !== null
@@ -49,7 +68,7 @@ const Logs = () => {
                   ))}
             </TransitionGroup>
           ) : (
-            <h4>No Currently Open Issues...</h4>
+            <Loader />
           )}
         </div>
 

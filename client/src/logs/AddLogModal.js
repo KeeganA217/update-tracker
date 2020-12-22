@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import M from "materialize-css/dist/js/materialize.min.js";
 import LogContext from "../context/logs/logContext";
 import moment from "moment";
@@ -18,10 +18,10 @@ const AddLogModal = () => {
     attention: "",
     author: "",
     due: "",
-    date: new Date(),
+    created: new Date(),
   });
 
-  const { title, description, attention, author, due, date } = log;
+  const { title, description, attention, due } = log;
 
   useEffect(() => {
     var elems = document.querySelectorAll(".datepicker");
@@ -34,7 +34,7 @@ const AddLogModal = () => {
           author: user.firstName,
           title: title,
           description: description,
-          date: moment(new Date()).format("MMM Do YYYY"),
+          created: new Date(),
         }),
     });
   });
@@ -100,7 +100,12 @@ const AddLogModal = () => {
         </div>
         <div className="row ">
           <div className="input-field">
-            <input className="datepicker" type="text" name="due" value={due} />
+            <input
+              className="datepicker"
+              type="text"
+              name="due"
+              defaultValue={due}
+            />
             <label htmlFor="due" className="active">
               Due Date
             </label>
@@ -115,7 +120,7 @@ const AddLogModal = () => {
                   type="radio"
                   name="attention"
                   checked={attention === "Needs Attention"}
-                  value="Needs Attention"
+                  defaultValue="Needs Attention"
                   onChange={onChange}
                 />
                 <span>Needs Attention</span>
@@ -127,7 +132,7 @@ const AddLogModal = () => {
                   type="radio"
                   name="attention"
                   checked={attention === "Issue Resolved"}
-                  value="Issue Resolved"
+                  defaultValue="Issue Resolved"
                   onChange={onChange}
                 />
                 <span>Issue Resolved</span>

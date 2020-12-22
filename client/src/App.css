@@ -1,11 +1,19 @@
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
   background-image: url(./images/background.png);
   background-position: center;
   background-size: auto;
   background-repeat: no-repeat;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+h6 {
+  padding-top: 10px;
+  padding-left: 10px;
 }
 
 main {
@@ -29,19 +37,14 @@ button {
 }
 
 .card-link:hover {
-  background-color: gray;
-  border-radius: 50%;
+  background-color: #607d8b;
+  border-radius: 8px;
+  margin: 0;
   width: 30px;
   height: 30px;
 }
-
-textarea {
-  outline-color: gray;
-  border: 1px solid #ccc;
-}
-
 .search-bar {
-  margin: 20px auto 30px auto;
+  margin: 50px auto 30px auto;
   border-radius: 6px;
 }
 
@@ -61,33 +64,119 @@ textarea {
 }
 
 .action {
-  font-size: 40px;
+  font-size: 35px;
 }
 
-.parallax-image {
-  background-position: center center;
-  background-size: auto;
-  background-repeat: no-repeat;
-}
-
-.landing-card {
-  border-radius: 12px;
-  border-bottom: 3px solid black;
-  border-top: 3px solid black;
-}
-
-.landing-card-1 {
-  border-radius: 12px;
-  height: 425px;
-}
-
-.landing-card-1 p {
-  font-size: 18px;
+nav ul a {
+  color: black;
 }
 
 .due-date {
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 0 5px;
+  margin: auto;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
+  width: 85%;
+}
+
+.title-card {
+  margin: 60px auto;
+}
+
+.logs-title {
+  padding: 20px 0;
+  color: indigo;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.close-icon {
+  position: absolute;
+  bottom: 65px;
+  right: 10px;
+}
+
+.page-footer {
+  border-radius: 5px;
+  margin: 4rem auto 2rem auto;
+}
+
+.accent {
+  text-decoration: underline;
+}
+
+.card-accent {
+  padding: 10px 16px;
+  border-radius: 8px;
+}
+
+tr {
+  border-bottom: 1px solid black;
+}
+
+.td-title {
+  width: 178px;
+}
+
+.td-title p {
+  font-size: 21px;
+  font-family: 500;
+}
+
+.td-description {
+  width: 430px;
+}
+.td-attention {
+  width: 85px;
+}
+.td-due {
+  width: 155px;
+}
+.td-edit {
+  width: 80px;
+}
+.td-delete {
+  width: 80px;
+}
+.th-title {
+  width: 178px;
+}
+.th-description {
+  width: 430px;
+}
+.th-attention {
+  width: 85px;
+}
+.th-due {
+  width: 155px;
+}
+.th-edit {
+  width: 80px;
+}
+.th-delete {
+  width: 80px;
+}
+
+/* label color */
+.input-field label {
+  color: #000;
+}
+/* label focus color */
+.input-field input[type="text"]:focus + label,
+.input-field input[type="email"]:focus + label,
+.input-field input[type="password"]:focus + label {
+  color: black !important;
+  background-color: transparent;
+}
+
+/* label underline focus color */
+.input-field input:focus {
+  border-bottom: 1px solid indigo !important;
+  box-shadow: 0 1px 0 0 !important;
+}
+
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: indigo !important;
 }

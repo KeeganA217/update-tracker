@@ -94,7 +94,7 @@ const Register = (props) => {
             <label htmlFor="email">Email</label>
           </div>
           <div className="input-field col s12 l6 offset-l3 offset-r3">
-            <i className="material-icons prefix">lock_outline</i>
+            <i className="material-icons prefix">lock</i>
             <input
               id="icon-prefix"
               type="password"
@@ -118,7 +118,7 @@ const Register = (props) => {
           </div>
           <div className="col s12 center-align">
             <button
-              className="btn waves-effect waves-light"
+              className="btn waves-effect waves-light grey darken-1 hoverable"
               type="submit"
               name="action"
             >
