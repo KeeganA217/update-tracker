@@ -82,7 +82,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar z-depth-1 transparent">
+      <nav className="navbar z-depth-0 transparent">
         <div className="nav-wrapper valign-wrapper">
           <div className="container">
             <a className="brand-logo" href="!#">
